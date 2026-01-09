@@ -1,0 +1,74 @@
+@import 'bootstrap/dist/css/bootstrap.min.css';
+
+/* #f0393e Red color buttons 
+
+
+*/
+
+@font-face {
+    font-family: 'bbspscificfont';
+    src: url('/fonts/bbspscificfont.woff') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  body {
+    font-family: 'bbspscificfont', sans-serif;
+    background-image: url('/img/background.webp');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        min-height: 100vh;
+        color: #037622;
+
+
+
+  }
+
+  .textbox{
+    background-color: #45a3d9;
+    color: white;
+    font-size:28px;
+  }
+  .cardHeadingtextbox{
+    background-color: #45a3d9;
+    color: white;
+    font-family: 'bbspscificfont';
+    font-size:22px;
+    
+  }
+
+  .regularFont {
+    font-family: 'Helvetica';
+  }
+
+  .panel-heading {
+    padding: 10px 15px;
+    border-bottom: 1px solid transparent;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+}
+
+  .regularFontSteps {
+    font-family: "Lato-regular";
+    color: black;
+    font-size:22px;
+    font-weight: 400;
+    text-transform: uppercase;
+    
+
+  }
+  .bbfont {
+    font-family: 'bbspscificfont';
+
+  }
+
+  .is-invalid {
+    border-color: red;
+    outline: none;
+  }
+
+
+  
+
+  

@@ -1,0 +1,185 @@
+---
+import "../styles/global.css";
+import TablaPersonas from "../components/TablaPersonas.tsx";
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.jpeg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bad Bunny-Dtmf-Sorteo!</title>
+    <!-- Bootstrap CDN -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container text-center d-flex flex-column justify-content-center align-items-center min-vh-100">
+      <h1 class="mb-3 pt-5">¡Sorteo! Dos Entradas VIP para Bad Bunny<br> Dtmf World Tour</h1>
+      <h4 class="mb-4">Fecha: 23 Enero del 2026, Estadio Atanasio Girardot</h4>
+      <img src="/img/bbbanner1.gif" class="img-fluid mb-4" alt="Banner Benito" />
+
+      <span class="lead text-center mb-4 textbox px-5">
+        
+       El ganador se llevará las 2 Entradas! <br>
+        Fecha del Sorteo: 31 de Diciembre con el Sorteo de la Loteria Nacional Ecuador
+      </span>
+
+      
+
+
+      <div class="bg-dark  text-white min-vh-50 w-100 p-4">
+        <p class="display-6">
+        Sigue estos pasos para participar!
+      </p>
+
+      </div>
+
+    <div class="container my-4 regularFont">
+  <div class="row">
+    <!-- Tarjeta 1 -->
+    <div class="col-12 col-md-6 col-lg-4 mb-4">
+      <div class="card h-100 shadow-sm">
+         <div class="panel-heading cardHeadingtextbox">1. Consigue un Código!</div>
+        <div class="card-body">
+          
+          <p class="card-text text-start" style="font-size: 18px">Para conseguir un código
+             contactanos directamente haciendo click en el siguiente boton.
+             <strong class=" text-start" style="color: #037622; " >
+              El valor de cada código es de tan solo 5$.
+             </strong>
+             </p>
+             
+             
+                  <a href="https://wa.me/593995518039?text=Hola,%20deseo%20información%20sobre%20cómo%20adquirir%20los%20códigos%20para%20participar.
+" class="btn btn-primary">
+  <img src="/img/whatsapp-logo.svg" alt="WhatsApp" width="20" height="20">
+  Contactanos
+</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tarjeta 2 -->
+    <div class="col-12 col-md-6 col-lg-4 mb-4">
+      <div class="card h-100 shadow-sm">
+        <div class="panel-heading cardHeadingtextbox">2. Ingresa el Código</div>
+        <div class="card-body">
+          
+          <p class="card-text text-start" style="font-size: 18px">
+            El código es único, cada código te permitirá seleccionar un número.<br> 
+            Debe ingresarse sin espacios.
+          </p>
+          <a href="#code" class="btn btn-primary mt-4">Ingresar el codigo</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tarjeta 3 -->
+    <div class="col-12 col-md-6 col-lg-4 mb-4">
+      <div class="card h-100 shadow-sm">
+         <div class="panel-heading cardHeadingtextbox">3. Registrate!</div>
+        <div class="card-body">
+          <p class="card-text text-start" style="font-size: 18px">Haz clic en el botón "Redeem code".<br>
+Ingresa tus datos en la página de registro.<br>
+Al terminar, revisa la tabla de participantes.
+            
+           </p>
+          <a href="#TablaPersonas" class="btn btn-primary mt-4">Ir a la Tabla</a>
+        </div>
+      </div>
+    </div>
+
+    
+
+    
+  </div>
+  <a href="/information" class="btn btn-primary">Mas Info? aqui!</a>
+  
+</div>
+
+   
+     
+        
+     
+<div id="TablaPersonas" class="text-center w-100">
+  <div style="font-size:28px">Tabla de participantes!</div>
+  <TablaPersonas client:load />
+</div>
+
+      <!-- Formulario de Código -->
+      <div class="d-flex justify-content-center align-items-center mt-4 mb-4">
+        <form id="codigoForm" class="w-100" style="max-width: 400px;">
+          <div class="mb-3">
+            <label for="code" class="form-label" style="font-size:22px;">Código</label>
+            <div class="d-flex">
+              <input
+                type="text"
+                class="form-control regularFont"
+                id="code"
+                placeholder="Ingresa el Código"
+                aria-describedby="codeHelp"
+              />
+              <button type="submit" class="btn btn-primary mx-2">Redeem Code</button>
+            </div>
+            <div id="codeHelp" class="form-text text-muted mt-1">
+              NO COMPARTAS TU CÓDIGO CON OTRAS PERSONAS
+            </div>
+            <div id="codeError" style="color:red; font-size:0.9rem; display:none;"></div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Bootstrap JS (opcional, si necesitas interactividad) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Script de validación de código -->
+    <script type="module">
+      const form = document.getElementById("codigoForm");
+
+      form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+
+        const input = document.getElementById("code");
+        const errorDiv = document.getElementById("codeError");
+        const codigo = input.value.trim();
+
+        if (!codigo || codigo.length !== 8) {
+          errorDiv.textContent = "Ingresa un código válido de 8 caracteres";
+          errorDiv.style.display = "block";
+          return;
+        }
+
+        try {
+          const res = await fetch("https://www.unarifaloca.com/api/participantes/validar-codigo", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ codigo })
+          });
+
+          const result = await res.json();
+
+          if (res.ok) {
+            // Guardar código temporalmente en localStorage
+            localStorage.setItem("codigo", codigo);
+            window.location.href = "/registration"; // Redirigir al formulario
+          } else {
+            errorDiv.textContent = result.message;
+            errorDiv.style.display = "block";
+          }
+        } catch (err) {
+          errorDiv.textContent = "Error de conexión, intenta de nuevo";
+          errorDiv.style.display = "block";
+          console.error(err);
+        }
+      });
+    </script>
+  </body>
+</html>
+
+
+
+

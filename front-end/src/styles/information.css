@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
+.banner {
+    height: 100px; /* altura fija */
+    width: 100%;   /* full width */
+     background-color: #45a3d9; /* ejemplo de fondo */
+    text-align: center;
+  }
+
+  body {
+  font-family: 'Inter', sans-serif;
+}
+
+.faq-section {
+  background-color: #ffffff;
+}
+
+.accordion-button {
+  font-weight: 600;
+  font-size: 1.05rem;
+  padding: 1.25rem 0;
+}
+
+.accordion-button:not(.collapsed) {
+  background-color: #ffffff;
+  color: #000;
+  box-shadow: none;
+}
+
+.accordion-item {
+  border: none;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.accordion-body {
+  padding: 0 0 1.5rem 0;
+  color: #555;
+  line-height: 1.6;
+}
